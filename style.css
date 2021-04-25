@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rebeccapurple;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cinema_container {
+    margin: 1rem 1rem;
+}
+
+.cinema_container select {
+    background-color: white;
+    border: 0;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    padding: 0.3rem 1rem;
+    appearance: none;
+    cursor: pointer;
+}
+
+.display {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    color: rgb(131, 129, 129);
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.display ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.display li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.6rem;
+}
+
+.display li small {
+    margin-left: 0.1rem;
+}
+
+.seat {
+    background-color: rgb(42, 39, 56);
+    height: 1rem;
+    width: 1.4rem;
+    margin: 0.4rem;
+    border-top-right-radius: 0.6rem;
+    border-top-left-radius: 0.6rem;
+}
+
+.seat.selected {
+    background-color: cadetblue;
+}
+
+.seat.occupied {
+    background-color: cornsilk;
+}
+
+
+
+
+
