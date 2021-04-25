@@ -68,8 +68,16 @@ window.addEventListener('DOMContentLoaded', () => {
         } else if (countFreePlaces(theater[row]) < seats) {
             alert('Il n\'y a pas assez de places. Veuillez choisir une autre rangée.')
         } else if ((seats >= 1 || seats <= rowPlaces) && (row >= 1 || row <= allRows)) {
-            const firstPlaceFree = theater[row].findIndex(e => e === 0);
-            registerSeats(seats, row, firstPlaceFree);
+            const randomPosition = Math.random();
+            if(randomPosition < 0.5) {
+                const firstPlaceFree = theater[row].findIndex(e => e === 0);
+                registerSeats(seats, row, firstPlaceFree);
+            } else {
+                const lastPlaceFree = +theater[row].lastIndexOf(0) + 1;
+                reverseRegisterSeats(seats, row, lastPlaceFree);
+
+            }
+            
             showPlaces();
             updateSelect();
         }
@@ -83,8 +91,14 @@ window.addEventListener('DOMContentLoaded', () => {
         return count;
     }
 
-    const registerSeats = (place, row, index) => {
-        for (let i = index; i < place+index; i++) {
+    const registerSeats = (seats, row, index) => {
+        for (let i = index; i < seats+index; i++) {
+            theater[row][i] = 2;
+        }
+    }
+
+    const reverseRegisterSeats = (seats, row, index) => {
+        for (let i = index - seats; i < index; i++){
             theater[row][i] = 2;
         }
     }
