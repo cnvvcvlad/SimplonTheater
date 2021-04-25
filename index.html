@@ -11,6 +11,57 @@
 </head>
 
 <body>
+    <div class="cinema_container">
+        <label for="places">Combien de places voulez-vous acheter ?
+            <select id="places">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="cinema_container">
+        <label for="rows">A quelle rangée vous voulez aller ?
+            <select id="rows">
+                <option value="0"></option>
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+            </select>
+        </label>
+    </div>
+
+    <button id="submit">Acheter</button>
+
+    <div class="display">
+        <ul>
+            <li>
+                <div class="seat"></div>
+                <small>Libres</small>
+            </li>
+            <li>
+                <div class="seat selected"></div>
+                <small>Sélectionnées</small>
+            </li>
+            <li>
+                <div class="seat occupied"></div>
+                <small>Occupées</small>
+            </li>
+        </ul>
+    </div>
 
     <script src="script.js"></script>
 </body>
