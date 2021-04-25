@@ -5,7 +5,8 @@
 }
 
 body {
-    background-color: rebeccapurple;
+    background-color: rgb(19, 59, 71);
+    opacity: 0.9;
     color: white;
     display: flex;
     flex-direction: column;
