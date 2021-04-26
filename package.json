@@ -1,0 +1,24 @@
+{
+  "name": "SimplonTheater",
+  "version": "1.0.0",
+  "description": "Une application simple pour permettre aux utilisateurs de choisir des places de cinéma dans une salle au format fixe.",
+  "main": "script.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnvvcvlad/SimplonTheater.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cnvvcvlad/SimplonTheater/issues"
+  },
+  "homepage": "https://github.com/cnvvcvlad/SimplonTheater#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.2.1",
+    "cucumber": "^6.0.5"
+  }
+}
