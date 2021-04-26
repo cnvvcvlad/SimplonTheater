@@ -46,6 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (selectedPlace !== 0 && selectedRow !== 0) {
             checkPlaces(selectedPlace, selectedRow);
             updateSelect();
+
             selectedRow = 0;
             selectedPlace = 0;
         } else {
@@ -57,7 +58,13 @@ window.addEventListener('DOMContentLoaded', () => {
     /**
      * Functions
      */
-    
+
+
+    /**
+     * Vérification s'il y a assez de place sur la rangée. Si oui, on affiche les sièges. Si non, une alerte se déclanche.
+     * @param {number} seats 
+     * @param {number} row 
+     */
     const checkPlaces = (seats, row) => {
         if ((seats < 1 || seats > rowPlaces) && (row < 1 || row > allRows)) {
             alert('Le choix est incorrect');
@@ -69,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
             alert('Il n\'y a pas assez de places. Veuillez choisir une autre rangée.')
         } else if ((seats >= 1 || seats <= rowPlaces) && (row >= 1 || row <= allRows)) {
             const randomPosition = Math.random();
-            if(randomPosition < 0.5) {
+            if (randomPosition < 0.5) {
                 const firstPlaceFree = theater[row].findIndex(e => e === 0);
                 registerSeats(seats, row, firstPlaceFree);
             } else {
@@ -77,12 +84,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 reverseRegisterSeats(seats, row, lastPlaceFree);
 
             }
-            
             showPlaces();
             updateSelect();
         }
     }
 
+
+
+    /**
+     * Calcule le nombre de place libres sur la rangée
+     * @param {number} row 
+     * @returns {number}
+     */
     const countFreePlaces = (row) => {
         let count = 0;
         for (let i = 0; i < row.length; i++) {
@@ -91,32 +104,47 @@ window.addEventListener('DOMContentLoaded', () => {
         return count;
     }
 
+    /**
+     * Enregistre les nouvelles places de gauche à droite
+     * @param {number} seats 
+     * @param {number} row 
+     * @param {number} index 
+     */
     const registerSeats = (seats, row, index) => {
-        for (let i = index; i < seats+index; i++) {
+        for (let i = index; i < seats + index; i++) {
             theater[row][i] = 2;
         }
     }
 
+    /**
+     * Enregistre les nouvelles places de droite à gauche
+     * @param {number} seats 
+     * @param {number} row 
+     * @param {number} index 
+     */
     const reverseRegisterSeats = (seats, row, index) => {
-        for (let i = index - seats; i < index; i++){
+        for (let i = index - seats; i < index; i++) {
             theater[row][i] = 2;
         }
     }
 
+    /**
+     * Affiche les sièges du cinéma
+     */
     const showPlaces = () => {
-        containerRow.innerHTML="";
+        containerRow.innerHTML = "";
 
-        for(let i = 1; i <= allRows; i++){
-        let row = document.createElement('div');
-        row.setAttribute("class", "row");
+        for (let i = 1; i <= allRows; i++) {
+            let row = document.createElement('div');
+            row.setAttribute("class", "row");
 
-            for(let j = 0; j < rowPlaces; j++){
-                if(theater[i][j] === 0){
+            for (let j = 0; j < rowPlaces; j++) {
+                if (theater[i][j] === 0) {
                     const cell = document.createElement('div');
                     cell.setAttribute("class", "seat");
                     row.append(cell);
 
-                } else if(theater[i][j] === 1) {
+                } else if (theater[i][j] === 1) {
                     const cell = document.createElement('div');
                     cell.setAttribute("class", "seat occupied");
                     row.append(cell);
@@ -128,10 +156,13 @@ window.addEventListener('DOMContentLoaded', () => {
             }
 
             containerRow.append(row);
-        }           
+        }
 
     }
 
+    /**
+     * Initialise la liste d'options avec la valeur par défaut 0
+     */
     function updateSelect() {
         placesElement.selectedIndex = 0;
         rowsElement.selectedIndex = 0;
