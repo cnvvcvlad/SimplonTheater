@@ -111,6 +111,10 @@ window.addEventListener('DOMContentLoaded', () => {
      * @param {number} index 
      */
     const registerSeats = (seats, row, index) => {
+        for (const prop in theater) {
+            theater[prop].forEach(function (item, i) { if (item == 2) theater[prop][i] = 1; });
+        }
+
         for (let i = index; i < seats + index; i++) {
             theater[row][i] = 2;
         }
@@ -123,6 +127,10 @@ window.addEventListener('DOMContentLoaded', () => {
      * @param {number} index 
      */
     const reverseRegisterSeats = (seats, row, index) => {
+        for (const prop in theater) {
+            theater[prop].forEach(function (item, i) { if (item == 2) theater[prop][i] = 1; });
+        }
+
         for (let i = index - seats; i < index; i++) {
             theater[row][i] = 2;
         }
