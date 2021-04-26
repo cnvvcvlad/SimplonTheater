@@ -10,7 +10,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
@@ -20,8 +20,14 @@ body {
     margin: 1rem 1rem;
 }
 
+.cinema_container select:hover {
+    background-color: rgb(54, 45, 27);
+    color: thistle;
+}
+
 .cinema_container select {
     background-color: white;
+    color: rgb(7, 54, 54);
     border: 0;
     border-radius: 0.3rem;
     font-size: 1rem;
@@ -29,6 +35,7 @@ body {
     padding: 0.3rem 1rem;
     appearance: none;
     cursor: pointer;
+    transition : background-color, color 0.5s ease-in-out;
 }
 
 .display {
@@ -91,6 +98,23 @@ body {
     box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
 
+.buyBtn:hover {
+    background-color: rgb(54, 45, 27);
+    color: thistle;
+}
+
+.buyBtn {
+    cursor: pointer;
+    background-color: beige;
+    color: rgb(7, 54, 54);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.2rem 0.3rem;
+    margin: 0.3rem 0.2rem;
+    border: 0;
+    border-radius: 0.2rem;
+    transition: background-color, color 0.5s ease-in-out;
+}
 
 
 
