@@ -5,7 +5,8 @@
 }
 
 body {
-    background-color: rebeccapurple;
+    background-color: rgb(19, 59, 71);
+    opacity: 0.9;
     color: white;
     display: flex;
     flex-direction: column;
@@ -75,6 +76,20 @@ body {
     background-color: cornsilk;
 }
 
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    background-color: #fff;
+    height: 70px;
+    min-width: 250px;
+    margin: 15px 0;
+    transform: rotateX(-45deg);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
 
 
 

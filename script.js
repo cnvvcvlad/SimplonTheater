@@ -23,6 +23,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const placesElement = document.querySelector('#places');
     const rowsElement = document.querySelector('#rows');
     const submitElement = document.querySelector('#submit');
+    const containerRow = document.querySelector('#container_row');
+
+
+    updateSelect();
+
 
 
     /**
@@ -40,6 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
     submitElement.addEventListener('click', () => {
         if (selectedPlace !== 0 && selectedRow !== 0) {
             checkPlaces(selectedPlace, selectedRow);
+            updateSelect();
             selectedRow = 0;
             selectedPlace = 0;
         } else {
@@ -51,8 +57,8 @@ window.addEventListener('DOMContentLoaded', () => {
     /**
      * Functions
      */
-
-    function checkPlaces(seats, row) {
+    
+    const checkPlaces = (seats, row) => {
         if ((seats < 1 || seats > rowPlaces) && (row < 1 || row > allRows)) {
             alert('Le choix est incorrect');
         }
@@ -62,9 +68,73 @@ window.addEventListener('DOMContentLoaded', () => {
         } else if (countFreePlaces(theater[row]) < seats) {
             alert('Il n\'y a pas assez de places. Veuillez choisir une autre rangée.')
         } else if ((seats >= 1 || seats <= rowPlaces) && (row >= 1 || row <= allRows)) {
-            const firstPlaceFree = theater[row].findIndex(e => e === 0);
-            registerSeats(place, row, firstPlaceFree);
+            const randomPosition = Math.random();
+            if(randomPosition < 0.5) {
+                const firstPlaceFree = theater[row].findIndex(e => e === 0);
+                registerSeats(seats, row, firstPlaceFree);
+            } else {
+                const lastPlaceFree = +theater[row].lastIndexOf(0) + 1;
+                reverseRegisterSeats(seats, row, lastPlaceFree);
+
+            }
+            
+            showPlaces();
+            updateSelect();
         }
+    }
+
+    const countFreePlaces = (row) => {
+        let count = 0;
+        for (let i = 0; i < row.length; i++) {
+            if (row[i] === 0) count++;
+        }
+        return count;
+    }
+
+    const registerSeats = (seats, row, index) => {
+        for (let i = index; i < seats+index; i++) {
+            theater[row][i] = 2;
+        }
+    }
+
+    const reverseRegisterSeats = (seats, row, index) => {
+        for (let i = index - seats; i < index; i++){
+            theater[row][i] = 2;
+        }
+    }
+
+    const showPlaces = () => {
+        containerRow.innerHTML="";
+
+        for(let i = 1; i <= allRows; i++){
+        let row = document.createElement('div');
+        row.setAttribute("class", "row");
+
+            for(let j = 0; j < rowPlaces; j++){
+                if(theater[i][j] === 0){
+                    const cell = document.createElement('div');
+                    cell.setAttribute("class", "seat");
+                    row.append(cell);
+
+                } else if(theater[i][j] === 1) {
+                    const cell = document.createElement('div');
+                    cell.setAttribute("class", "seat occupied");
+                    row.append(cell);
+                } else {
+                    const cell = document.createElement('div');
+                    cell.setAttribute("class", "seat selected");
+                    row.append(cell);
+                }
+            }
+
+            containerRow.append(row);
+        }           
+
+    }
+
+    function updateSelect() {
+        placesElement.selectedIndex = 0;
+        rowsElement.selectedIndex = 0;
     }
 
 
